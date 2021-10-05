@@ -59,13 +59,13 @@ module storageacct {
 
 module svcacct {
   source = "./modules/SVCACCT"
-  rr_svc_acct_username = "avdsa@cwpsdev.com"
-  rr_svc_acct_pw = "*Sdwwhabpw1!"
+  rr_svc_acct_username = "avdsa@domain.com"
+  rr_svc_acct_pw = ""
 }
 
 module vm {
   source = "./modules/VM"
-  avd_dc_vm_admin_password = "*Sdwwhabpw1!"
+  avd_dc_vm_admin_password = ""
   # tag_env =
   # vm_name =
   # vm_pip_name =

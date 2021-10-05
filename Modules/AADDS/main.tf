@@ -1,7 +1,5 @@
 module svcacct {
   source = "../SVCACCT"
-  rr_svc_acct_username = "avdsa@cwpsdev.com"
-  rr_svc_acct_pw = "*Sdwwhabpw1!"
 }
 
 module rg {
