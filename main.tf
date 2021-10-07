@@ -14,6 +14,12 @@ provider "azurerm" {
   features {}
 }
 
+module svcacct {
+  source = "./modules/SVCACCT"
+  rr_svc_acct_username = "avdsa@domain.com"
+  rr_svc_acct_pw = "Lilbeth1"
+}
+
 module aadds {
   source = "./modules/AADDS"
   # tag_env = 
@@ -57,15 +63,9 @@ module storageacct {
   # fs_quota =
 }
 
-module svcacct {
-  source = "./modules/SVCACCT"
-  rr_svc_acct_username = "avdsa@domain.com"
-  rr_svc_acct_pw = ""
-}
-
 module vm {
   source = "./modules/VM"
-  avd_dc_vm_admin_password = ""
+  avd_dc_vm_admin_password = "Lilbeth1"
   # tag_env =
   # vm_name =
   # vm_pip_name =
@@ -96,3 +96,12 @@ module vnet {
 #  vpn_connection_name = 
 #  rtable_name = 
 #}
+
+module alerts {
+ source = "./modules/ALERTS"
+ client_name = "client"
+ workspace_id = "/subscriptions/[Subscription ID]/resourceGroups/[Resource Group]/providers/Microsoft.OperationalInsights/workspaces/[Log Analytics Workspace ID]"
+ storageacct_id = "/subscriptions/[Subscription ID]/resourceGroups/[Resource Group]/providers/Microsoft.Storage/storageAccounts/[Storage Account Name/ID]"
+ storageacct_threshold_bytes = "26388279066624"
+# storageacct_region = 
+}

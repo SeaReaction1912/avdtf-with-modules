@@ -1,7 +1,3 @@
-module svcacct {
-  source = "../SVCACCT"
-}
-
 module rg {
   source = "../RG"
 }
@@ -13,11 +9,6 @@ module vnet {
 resource "azuread_group" "dcadmins" {
   display_name = "AAD DC Administrators"
   security_enabled = true
-}
-
-resource "azuread_group_member" "admins" {
-  group_object_id  = azuread_group.dcadmins.object_id
-  member_object_id = module.svcacct.object_id
 }
 
 resource "azuread_service_principal" "prod" {

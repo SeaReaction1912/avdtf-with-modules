@@ -1,5 +1,5 @@
 output "sa_name" {
-  value = var.sa_name
+  value = azurerm_storage_account.storageacct.name
   description = "The Storage Account Name"
 }
 

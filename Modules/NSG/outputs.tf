@@ -4,7 +4,7 @@ output "tag_env" {
 }
 
 output "nsg_name" {
-  value = var.nsg_name
+  value = azurerm_network_security_group.nsg.name
   description = "Network Security Group Name"
 }
 
