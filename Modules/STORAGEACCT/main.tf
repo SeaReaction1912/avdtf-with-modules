@@ -1,11 +1,8 @@
-module rg {
-  source = "../RG"
-}
-
 resource "azurerm_storage_account" "storageacct" {
   name                     = var.sa_name
-  location                 = module.rg.rg_location
-  resource_group_name      = module.rg.rg_name
+  location                 = var.rg_location
+  resource_group_name      = var.rg_name
+  account_kind             = "FileStorage"
   account_replication_type = "LRS"
   account_tier             = "Premium"
 

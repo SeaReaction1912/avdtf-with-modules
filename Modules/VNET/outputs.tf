@@ -4,7 +4,7 @@ output "vnet_name" {
 }
 
 output "vnet_subnet_id" {
-  value = azurerm_virtual_network.vnet.subnet.*.id[0]
+  value = azurerm_subnet.subnet.id
   description = "The AVD Virtual Network Subnet ID"
 }
 

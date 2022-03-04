@@ -1,11 +1,3 @@
-module rg {
-  source = "../RG"
-}
-
-module vnet {
-  source = "../VNET"
-}
-
 resource "azuread_group" "dcadmins" {
   display_name = "AAD DC Administrators"
   security_enabled = true
@@ -17,15 +9,15 @@ resource "azuread_service_principal" "prod" {
 
 resource "azurerm_active_directory_domain_service" "avd-domain" {
   name                = var.avd_domain_name
-  location            = module.rg.rg_location
-  resource_group_name = module.rg.rg_name
+  location            = var.rg_location
+  resource_group_name = var.rg_name
 
   domain_name           = var.avd_domain_name
-  sku                   = "Enterprise"
+  sku                   = var.aadds_sku
   filtered_sync_enabled = false
 
   initial_replica_set {
-    subnet_id = module.vnet.vnet_subnet_id
+    subnet_id = "${var.vnet_subnet_id}"
   }
 
   notifications {
@@ -40,24 +32,9 @@ resource "azurerm_active_directory_domain_service" "avd-domain" {
     sync_on_prem_passwords  = true
   }
 
-  tags = {
-    Environment = var.tag_env
-  }
-}
+  tags = var.tag_env
 
-resource "azurerm_virtual_network" "vnet" {
-  name                = var.vnet_name
-  location            = module.rg.rg_location
-  resource_group_name = module.rg.rg_name
-  address_space       = module.vnet.vnet_address_space
-  dns_servers         = [var.avd_net_dns1, var.avd_net_dns2]
-
-subnet {
-    name           = var.subnet_name
-    address_prefix = module.vnet.vnet_subnet
-  }
-
-  tags = {
-    environment = var.tag_env
-  }
+  depends_on = [
+    var.rg
+  ]
 }

@@ -1,6 +1,6 @@
 variable "tag_env" {
   description = "The environment tag"
-  default     = "RR AVD"
+  default     = {environment = "RR AVD"}
 }
 
 variable "vpn_net_name" {
@@ -53,4 +53,16 @@ variable "vpn_connection_name" {
 variable "rtable_name" {
   description = "The Route Table Name"
   default = "avd-net-rtable"
+}
+
+variable "rg_name" {
+  description = "Resource Group Name"
+}
+
+variable "rg_location" {
+  description = "Resource Group Location"
+}
+
+variable "vnet_subnet_id" {
+  description = "VNET Subnet ID"
 }

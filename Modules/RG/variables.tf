@@ -1,6 +1,7 @@
-variable "tag_env" {
+variable "rg_tag" {
+  type        = any
   description = "The environment tag"
-  default     = "RR AVD"
+  default     = {environment = "RR AVD"}
 }
 
 variable "rg_name" {

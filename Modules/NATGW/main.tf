@@ -1,19 +1,16 @@
-module rg {
-  source = "../RG"
-}
-
 resource "azurerm_public_ip" "natgw-pip" {
   name                = var.natgw_pip_name
-  location            = module.rg.rg_location
-  resource_group_name = module.rg.rg_name
+  location            = var.rg_location
+  resource_group_name = var.rg_name
   allocation_method   = "Static"
   sku                 = "Standard"
+  availability_zone   = "1"
 }
 
 resource "azurerm_nat_gateway" "natgw" {
   name                    = var.natgw_name
-  location                = module.rg.rg_location
-  resource_group_name     = module.rg.rg_name
+  location                = var.rg_location
+  resource_group_name     = var.rg_name
   sku_name                = "Standard"
   idle_timeout_in_minutes = 10
   zones                   = ["1"]

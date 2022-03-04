@@ -5,3 +5,7 @@ variable "rr_svc_acct_username" {
 variable "rr_svc_acct_pw" {
   description = "Red River AVD Service Account password"
 }
+
+variable "group_ob_id" {
+  description = "DCAdmins Group ID"
+}

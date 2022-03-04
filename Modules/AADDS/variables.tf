@@ -1,6 +1,6 @@
 variable "tag_env" {
   description = "The environment tag"
-  default     = "RR AVD"
+  default     = {environment = "RR AVD"}
 }
 
 variable "avd_domain_name" {
@@ -26,4 +26,25 @@ variable "avd_net_dns1" {
 variable "avd_net_dns2" {
   description = "The AADDS DC2 DNS IP"
   default     = "10.125.0.5"
+}
+
+variable "aadds_sku" {
+  description = "SKU"
+  default     = "Standard"
+}
+
+variable "rg_location" {
+  description = "Resource Group Location"
+}
+
+variable "rg_name" {
+  description = "Resource Group Name"
+}
+
+variable "vnet_subnet_id" {
+  description = "VNET Subnet ID"
+}
+
+variable "rg" {
+  description = "Resource Group"
 }

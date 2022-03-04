@@ -17,3 +17,11 @@ variable "fs_quota" {
   description = "The size of the file share in GB"
   default     = "512"
 }
+
+variable "rg_name" {
+  description = "Resource Group Name"
+}
+
+variable "rg_location" {
+  description = "Resource Group Location"
+}
