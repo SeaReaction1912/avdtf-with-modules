@@ -15,3 +15,11 @@ variable "rg_name" {
 variable "rg_location" {
   description = "Resource Group Location"
 }
+
+variable "vnet_subnet_id" {
+  description = "All Subnet ID 0"
+}
+
+variable vnets {
+  description = "All VNETs"
+}

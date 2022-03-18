@@ -1,3 +1,4 @@
+
 resource "azurerm_storage_account" "storageacct" {
   name                     = var.sa_name
   location                 = var.rg_location
@@ -5,10 +6,15 @@ resource "azurerm_storage_account" "storageacct" {
   account_kind             = "FileStorage"
   account_replication_type = "LRS"
   account_tier             = "Premium"
-
-  tags = {
-    environment = var.tag_env
+  
+  azure_files_authentication {
+    directory_type = "AADDS"
   }
+  
+  tags = var.tag_env
+
+  depends_on = [var.aadds]
+
 }
 
 resource "azurerm_storage_share" "fileshare" {

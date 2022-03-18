@@ -1,6 +1,6 @@
 variable "tag_env" {
   description = "The environment tag"
-  default     = "RR AVD"
+  default     = {environment = "RR AVD"}
 }
 
 variable "sa_name" {
@@ -24,4 +24,8 @@ variable "rg_name" {
 
 variable "rg_location" {
   description = "Resource Group Location"
+}
+
+variable aadds {
+  description = "AADDS domain"
 }

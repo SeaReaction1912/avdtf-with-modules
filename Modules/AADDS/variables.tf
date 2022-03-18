@@ -42,9 +42,14 @@ variable "rg_name" {
 }
 
 variable "vnet_subnet_id" {
+  type = string
   description = "VNET Subnet ID"
 }
 
 variable "rg" {
   description = "Resource Group"
+}
+
+variable vnets {
+  description = "All VNETs"
 }

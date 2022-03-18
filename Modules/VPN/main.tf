@@ -1,19 +1,16 @@
-resource "azurerm_virtual_network" "vpnnet" {
-    name                = var.vpn_net_name
-    address_space       = ["${var.avd_vpn_cidr}"]
-    location            = var.rg_location
-    resource_group_name = var.rg_name
-  
-    tags = var.tag_env
-  }
+resource "azurerm_virtual_network" "vnet" {
+  name                = "gw_vnet"
+  location            = var.rg_location
+  resource_group_name = var.rg_name
+  address_space       = ["10.0.254.0/24"]
+}
 
 resource "azurerm_subnet" "GatewaySubnet" {
-    depends_on           = [azurerm_virtual_network.vpnnet]
-    name                 = "GatewaySubnet"
-    resource_group_name  = var.rg_name
-    virtual_network_name = azurerm_virtual_network.vpnnet.name
-    address_prefixes       = ["${var.avd_vpn_gw_net}"]
-  }
+  name                = "GatewaySubnet"
+  resource_group_name = var.rg_name
+  virtual_network_name= azurerm_virtual_network.vnet.name
+  address_prefixes    = ["10.0.254.0/24"]
+}
 
 resource "azurerm_public_ip" "vpnpip" {
     name                = var.vpn_pip_name
@@ -44,9 +41,11 @@ resource "azurerm_virtual_network_gateway" "vpngw" {
   }
   
   vpn_client_configuration {
-    address_space = ["${var.avd_vpn_cidr}"]
+    address_space = ["${var.vpn_net_addr_spc}"]
   }
 
+  depends_on = [var.vnets]
+  
   tags = var.tag_env
 }
 

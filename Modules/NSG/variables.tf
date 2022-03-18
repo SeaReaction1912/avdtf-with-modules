@@ -1,6 +1,6 @@
 variable "tag_env" {
   description = "The environment tag"
-  default     = "RR AVD"
+  default     = {environment = "RR AVD"}
 }
 
 variable "nsg_name" {
@@ -17,5 +17,9 @@ variable "rg_location" {
 }
 
 variable "vnet_subnet_id" {
-  description = "Resource Group Location"
+  description = "VNET0 subnet ID"
+}
+
+variable "vnets" {
+  description = "All VNETs"
 }

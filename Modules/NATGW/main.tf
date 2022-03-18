@@ -14,9 +14,16 @@ resource "azurerm_nat_gateway" "natgw" {
   sku_name                = "Standard"
   idle_timeout_in_minutes = 10
   zones                   = ["1"]
+
+  depends_on = [var.vnets]
 }
 
 resource "azurerm_nat_gateway_public_ip_association" "natgw-pip-assoc" {
   nat_gateway_id       = azurerm_nat_gateway.natgw.id
   public_ip_address_id = azurerm_public_ip.natgw-pip.id
+}
+
+resource "azurerm_subnet_nat_gateway_association" "subnet_assoc" {
+  nat_gateway_id = azurerm_nat_gateway.natgw.id
+  subnet_id      = var.vnet_subnet_id
 }

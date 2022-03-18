@@ -4,11 +4,11 @@ output "tag_env" {
 }
 
 output "nsg_name" {
-  value = azurerm_network_security_group.nsg.name
-  description = "Network Security Group Name"
+  value = azurerm_network_security_group.nsg[*].*.name
+  description = "Network Security Group Names"
 }
 
-output "nsg_id" {
-  value = azurerm_network_security_group.nsg.id
-  description = "Network Security Group ID"
+output "nsg_ids" {
+  value = flatten(azurerm_network_security_group.nsg[*].*.id)
+  description = "Network Security Group IDs"
 }

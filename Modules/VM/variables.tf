@@ -1,6 +1,6 @@
 variable "tag_env" {
   description = "The environment tag"
-  default     = "RR AVD"
+  default     = {environment = "RR AVD"}
 }
 
 variable "sa_name" {
@@ -36,6 +36,7 @@ variable "rg_location" {
 }
 
 variable "vnet_subnet_id" {
+  type = string
   description = "VNET Subnet ID"
 }
 
@@ -43,6 +44,14 @@ variable "blob_endpoint" {
   description = "Blob Endpoint Name"
 }
 
-variable "vm_count" {
-  description = "Number of VMs"
+variable "nic-ip-cfg-name" {
+  description = "NIC IP Address config name"
+}
+
+variable "nsg_ids" {
+  description = "All NSGs"
+}
+
+variable vnets {
+  description = "All VNETs"
 }

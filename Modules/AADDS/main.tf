@@ -34,7 +34,5 @@ resource "azurerm_active_directory_domain_service" "avd-domain" {
 
   tags = var.tag_env
 
-  depends_on = [
-    var.rg
-  ]
+  depends_on = [var.rg, var.vnets]
 }

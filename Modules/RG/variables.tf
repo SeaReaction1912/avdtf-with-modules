@@ -10,6 +10,6 @@ variable "rg_name" {
 }
 
 variable "rg_location" {
-  description = "Resource Group Name"
+  description = "Resource Group Location"
   default     = "East US"
 }

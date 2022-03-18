@@ -3,21 +3,6 @@ variable "tag_env" {
   default     = {environment = "RR AVD"}
 }
 
-variable "vpn_net_name" {
-  description = "The VPN VNET Name"
-  default = "avd-net-vpn"
-}
-
-variable "avd_vpn_cidr" {
-  description = "The AVD VPN Network Address Space in CIDR format"
-  default     = "10.254.254.0/24"
-}
-
-variable "avd_vpn_gw_net" {
-  description = "The AVD VPN Gateway Subnet in CIDR format"
-  default     = "10.254.254.0/24"
-}
-
 variable "vpn_pip_name" {
   description = "The VPN VNET Public IP Name"
   default = "avd-net-vpn-pip"
@@ -63,6 +48,14 @@ variable "rg_location" {
   description = "Resource Group Location"
 }
 
+variable "vpn_net_addr_spc" {
+  description = "Shared Network connected to VPN"
+}
+
 variable "vnet_subnet_id" {
   description = "VNET Subnet ID"
+}
+
+variable "vnets" {
+  description = "ALL VNETS"
 }

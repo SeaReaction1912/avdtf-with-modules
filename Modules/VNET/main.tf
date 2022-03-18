@@ -1,15 +1,17 @@
 resource "azurerm_virtual_network" "vnet" {
-  name                = var.vnet_name
+  count               = length(var.vnets)
+  name                = var.vnets[count.index].vnet_name
   location            = var.rg_location
   resource_group_name = var.rg_name
-  address_space       = [var.avd_net_eastus_cidr]
+  address_space       = var.vnets[count.index].address_space
+  dns_servers         = ["${var.vnet_dns1}", "${var.vnet_dns2}"]
 
-  tags = var.tag_env
+  dynamic "subnet" {
+    for_each = var.vnets[count.index].subnets
+
+  content {
+    name              = subnet.value.name
+    address_prefix    = subnet.value.address
+  }
 }
-
-resource "azurerm_subnet" "subnet" {
-  name                 = var.subnet_name
-  resource_group_name  = var.rg_name
-  virtual_network_name = azurerm_virtual_network.vnet.name
-  address_prefixes     = [var.avd_net_eastus_subnet]
-}  
+}
